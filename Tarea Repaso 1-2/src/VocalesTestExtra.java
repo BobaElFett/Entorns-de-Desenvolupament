@@ -4,7 +4,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class VocalesTest {
+class VocalesTestExtra {
     @org.junit.jupiter.api.Test
     void contarvocales() {
         assertEquals(4, Vocales.contarvocales("Hola Mundo"));
@@ -28,5 +28,23 @@ class VocalesTest {
     @org.junit.jupiter.api.Test
     void contarvocales5() {
         assertEquals(6, Vocales.contarvocales("Cadena S1n Vocales"));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "4      ,aaaa",
+            "2      ,Pepa",
+            "4      ,Eres tonto",
+            "7      ,Paco es un bon tio"
+    })
+    void additionTest(int a, String b) {
+        assertEquals(a, Vocales.contarvocales(b));
+    }
+
+    @ParameterizedTest
+    // @CsvSource desde un fichero
+    @CsvFileSource(resources = "data.csv", numLinesToSkip = 0)
+    void additionTest2(int a, String b) {
+        assertEquals(a, Vocales.contarvocales(b));
     }
 }
